@@ -1,0 +1,44 @@
+<style>
+  .pause-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3;
+    background-color: rgba(0, 0, 0, 0.92);
+    border-color: #ff4400;
+    border-width: 0.12;
+    border-radius: 2;
+    gap: 1.5;
+  }
+  .pause-title {
+    font-size: 3.5;
+    color: #ff4400;
+    font-weight: bold;
+  }
+  .pause-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2 4;
+    background-color: rgba(255, 68, 0, 0.2);
+    border-color: #ff4400;
+    border-width: 0.1;
+    border-radius: 1;
+    cursor: pointer;
+    min-width: 24;
+  }
+  .pause-btn:hover {
+    background-color: rgba(255, 68, 0, 0.4);
+  }
+  .pause-btn-text {
+    font-size: 2;
+    color: #ff6633;
+    font-weight: bold;
+  }
+</style>
+<div class="pause-panel">
+  <span class="pause-title">⏸ PAUSED</span>
+  <div id="pause-resume-btn" class="pause-btn" cursor="pointer"><span class="pause-btn-text">▶ RESUME</span></div>
+  <div id="pause-restart-btn" class="pause-btn" cursor="pointer"><span class="pause-btn-text">🔄 RESTART</span></div>
+  <div id="pause-quit-btn" class="pause-btn" cursor="pointer"><span class="pause-btn-text">🏠 QUIT</span></div>
+</div>

@@ -1,0 +1,31 @@
+<style>
+  .pattern-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2;
+    background-color: rgba(0, 0, 0, 0.85);
+    border-color: #aa44ff;
+    border-width: 0.1;
+    border-radius: 1.5;
+    gap: 1;
+  }
+  .pattern-title {
+    font-size: 2.5;
+    color: #aa44ff;
+    font-weight: bold;
+  }
+  .pattern-level {
+    font-size: 1.8;
+    color: #cc88ff;
+  }
+  .pattern-instruction {
+    font-size: 1.5;
+    color: #8866aa;
+  }
+</style>
+<div class="pattern-panel">
+  <span id="pattern-title" class="pattern-title">WATCH THE PATTERN</span>
+  <span id="pattern-level" class="pattern-level">Round 1</span>
+  <span id="pattern-instruction" class="pattern-instruction">Memorize the sequence...</span>
+</div>

@@ -1,0 +1,64 @@
+<style>
+  .hud-panel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1 2;
+    background-color: rgba(0, 0, 0, 0.75);
+    border-color: #ff4400;
+    border-width: 0.08;
+    border-radius: 1;
+    gap: 3;
+  }
+  .hud-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hud-label {
+    font-size: 1;
+    color: #887766;
+  }
+  .hud-value {
+    font-size: 2.5;
+    color: #ff6633;
+    font-weight: bold;
+  }
+  .hud-combo {
+    font-size: 2.5;
+    color: #ffaa00;
+    font-weight: bold;
+  }
+  .hud-time {
+    font-size: 2.5;
+    color: #00ccff;
+    font-weight: bold;
+  }
+  .hud-lives {
+    font-size: 2.5;
+    color: #ff3333;
+    font-weight: bold;
+  }
+</style>
+<div class="hud-panel">
+  <div class="hud-block">
+    <span class="hud-label">SCORE</span>
+    <span id="hud-score" class="hud-value">0</span>
+  </div>
+  <div class="hud-block">
+    <span class="hud-label">COMBO</span>
+    <span id="hud-combo" class="hud-combo">x1</span>
+  </div>
+  <div class="hud-block">
+    <span class="hud-label">TIME</span>
+    <span id="hud-time" class="hud-time">60</span>
+  </div>
+  <div class="hud-block">
+    <span class="hud-label">LIVES</span>
+    <span id="hud-lives" class="hud-lives">♥♥♥</span>
+  </div>
+  <div class="hud-block">
+    <span class="hud-label">LEVEL</span>
+    <span id="hud-level" class="hud-value">1</span>
+  </div>
+</div>

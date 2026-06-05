@@ -1,0 +1,91 @@
+<style>
+  .help-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3;
+    background-color: rgba(0, 0, 0, 0.92);
+    border-color: #ff4400;
+    border-width: 0.12;
+    border-radius: 2;
+    gap: 1.2;
+  }
+  .help-title {
+    font-size: 3;
+    color: #ff4400;
+    font-weight: bold;
+  }
+  .help-section {
+    font-size: 1.8;
+    color: #ff8844;
+    font-weight: bold;
+  }
+  .help-text {
+    font-size: 1.3;
+    color: #ccaa88;
+  }
+  .help-highlight {
+    font-size: 1.3;
+    color: #ff6633;
+    font-weight: bold;
+  }
+  .help-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1;
+    align-items: center;
+  }
+  .target-icon {
+    font-size: 2;
+    color: #00ccff;
+  }
+  .target-name {
+    font-size: 1.3;
+    color: #ff6633;
+    font-weight: bold;
+    min-width: 12;
+  }
+  .target-desc {
+    font-size: 1.1;
+    color: #aa8866;
+  }
+  .back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1 3;
+    background-color: rgba(255, 68, 0, 0.1);
+    border-color: #663322;
+    border-width: 0.08;
+    border-radius: 0.8;
+    cursor: pointer;
+  }
+  .back-btn:hover {
+    background-color: rgba(255, 68, 0, 0.3);
+  }
+  .back-text {
+    font-size: 1.6;
+    color: #cc5533;
+  }
+</style>
+<div class="help-panel">
+  <span class="help-title">❓ HOW TO PLAY</span>
+  <span class="help-section">CONTROLS</span>
+  <span class="help-text">VR: Point controller + pull trigger</span>
+  <span class="help-text">Browser: Click on targets with mouse</span>
+  <span class="help-section">TARGETS</span>
+  <div class="help-row"><span class="target-name">🔵 NORMAL</span><span class="target-desc">100 pts — Standard target</span></div>
+  <div class="help-row"><span class="target-name">⭐ BONUS</span><span class="target-desc">300 pts — Golden, extra points</span></div>
+  <div class="help-row"><span class="target-name">⚡ SPEED</span><span class="target-desc">200 pts — Fast, quick reflexes</span></div>
+  <div class="help-row"><span class="target-name">🟣 TANK</span><span class="target-desc">500 pts — Needs 2 hits</span></div>
+  <div class="help-row"><span class="target-name">💣 BOMB</span><span class="target-desc">-200 pts — Don't hit these!</span></div>
+  <div class="help-row"><span class="target-name">👻 GHOST</span><span class="target-desc">400 pts — Flickers, hard to hit</span></div>
+  <div class="help-row"><span class="target-name">👑 KING</span><span class="target-desc">1000 pts — Very fast, very rare</span></div>
+  <div class="help-row"><span class="target-name">🎁 MYSTERY</span><span class="target-desc">??? pts — Random reward</span></div>
+  <span class="help-section">COMBOS</span>
+  <span class="help-text">Consecutive hits build your combo multiplier.</span>
+  <span class="help-text">Miss a target and your combo resets!</span>
+  <span class="help-section">POWER-UPS</span>
+  <span class="help-text">Random drops: Time Slow, Size Up, Score×2, Magnet, Freeze</span>
+  <div id="help-back-btn" class="back-btn" cursor="pointer"><span class="back-text">← BACK</span></div>
+</div>

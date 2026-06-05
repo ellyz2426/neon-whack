@@ -1,0 +1,20 @@
+<style>
+  .combo-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1 2;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-color: #ffaa00;
+    border-width: 0.1;
+    border-radius: 1;
+  }
+  .combo-text {
+    font-size: 4;
+    color: #ffaa00;
+    font-weight: bold;
+  }
+</style>
+<div class="combo-panel">
+  <span id="combo-text" class="combo-text"></span>
+</div>

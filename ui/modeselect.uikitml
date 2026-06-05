@@ -1,0 +1,132 @@
+<style>
+  .mode-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3;
+    background-color: rgba(0, 0, 0, 0.92);
+    border-color: #ff4400;
+    border-width: 0.12;
+    border-radius: 2;
+    gap: 1.5;
+  }
+  .mode-title {
+    font-size: 3;
+    color: #ff4400;
+    font-weight: bold;
+  }
+  .mode-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1;
+  }
+  .mode-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1;
+  }
+  .mode-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.2 2;
+    background-color: rgba(255, 68, 0, 0.15);
+    border-color: #ff4400;
+    border-width: 0.08;
+    border-radius: 1;
+    cursor: pointer;
+    min-width: 18;
+  }
+  .mode-btn:hover {
+    background-color: rgba(255, 68, 0, 0.35);
+  }
+  .mode-btn-name {
+    font-size: 1.8;
+    color: #ff6633;
+    font-weight: bold;
+  }
+  .mode-btn-desc {
+    font-size: 1;
+    color: #aa6644;
+  }
+  .locked-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.2 2;
+    background-color: rgba(80, 80, 80, 0.2);
+    border-color: #444444;
+    border-width: 0.08;
+    border-radius: 1;
+    min-width: 18;
+    cursor: pointer;
+  }
+  .locked-text {
+    font-size: 1.4;
+    color: #555555;
+  }
+  .back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1 3;
+    background-color: rgba(255, 68, 0, 0.1);
+    border-color: #663322;
+    border-width: 0.08;
+    border-radius: 0.8;
+    cursor: pointer;
+  }
+  .back-btn:hover {
+    background-color: rgba(255, 68, 0, 0.3);
+  }
+  .back-text {
+    font-size: 1.6;
+    color: #cc5533;
+  }
+</style>
+<div class="mode-panel">
+  <span class="mode-title">SELECT MODE</span>
+  <div class="mode-grid">
+    <div class="mode-row">
+      <div id="mode-classic" class="mode-btn" cursor="pointer">
+        <span class="mode-btn-name">⏱ CLASSIC</span>
+        <span class="mode-btn-desc">60 seconds, max score</span>
+      </div>
+      <div id="mode-survival" class="mode-btn" cursor="pointer">
+        <span class="mode-btn-name">❤️ SURVIVAL</span>
+        <span class="mode-btn-desc">3 lives, don't miss</span>
+      </div>
+    </div>
+    <div class="mode-row">
+      <div id="mode-timeattack" class="mode-btn" cursor="pointer">
+        <span class="mode-btn-name">⚡ TIME ATTACK</span>
+        <span class="mode-btn-desc">Hit 50 targets fast</span>
+      </div>
+      <div id="mode-zen" class="mode-btn" cursor="pointer">
+        <span class="mode-btn-name">🧘 ZEN</span>
+        <span class="mode-btn-desc">No pressure, just whack</span>
+      </div>
+    </div>
+    <div class="mode-row">
+      <div id="mode-speed" class="mode-btn" cursor="pointer">
+        <span id="mode-speed-name" class="mode-btn-name">🚀 SPEED RUSH</span>
+        <span id="mode-speed-desc" class="mode-btn-desc">30s, ever faster</span>
+      </div>
+      <div id="mode-pattern" class="mode-btn" cursor="pointer">
+        <span id="mode-pattern-name" class="mode-btn-name">🧠 PATTERN</span>
+        <span id="mode-pattern-desc" class="mode-btn-desc">Memorize the sequence</span>
+      </div>
+    </div>
+    <div class="mode-row">
+      <div id="mode-daily" class="mode-btn" cursor="pointer">
+        <span class="mode-btn-name">📅 DAILY</span>
+        <span class="mode-btn-desc">Today's challenge</span>
+      </div>
+      <div id="mode-frenzy" class="mode-btn" cursor="pointer">
+        <span id="mode-frenzy-name" class="mode-btn-name">🔥 FRENZY</span>
+        <span id="mode-frenzy-desc" class="mode-btn-desc">All holes, nonstop</span>
+      </div>
+    </div>
+  </div>
+  <div id="mode-back-btn" class="back-btn" cursor="pointer"><span class="back-text">← BACK</span></div>
+</div>

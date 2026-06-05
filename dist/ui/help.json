@@ -1,0 +1,975 @@
+{
+  "element": {
+    "type": "container",
+    "sourceTag": "div",
+    "children": [
+      {
+        "sourceTag": "span",
+        "type": "custom",
+        "children": [
+          "❓ HOW TO PLAY"
+        ],
+        "properties": {
+          "class": "help-title"
+        },
+        "dataUid": "uid-2"
+      },
+      {
+        "sourceTag": "span",
+        "type": "custom",
+        "children": [
+          "CONTROLS"
+        ],
+        "properties": {
+          "class": "help-section"
+        },
+        "dataUid": "uid-3"
+      },
+      {
+        "sourceTag": "span",
+        "type": "custom",
+        "children": [
+          "VR: Point controller + pull trigger"
+        ],
+        "properties": {
+          "class": "help-text"
+        },
+        "dataUid": "uid-4"
+      },
+      {
+        "sourceTag": "span",
+        "type": "custom",
+        "children": [
+          "Browser: Click on targets with mouse"
+        ],
+        "properties": {
+          "class": "help-text"
+        },
+        "dataUid": "uid-5"
+      },
+      {
+        "sourceTag": "span",
+        "type": "custom",
+        "children": [
+          "TARGETS"
+        ],
+        "properties": {
+          "class": "help-section"
+        },
+        "dataUid": "uid-6"
+      },
+      {
+        "type": "container",
+        "sourceTag": "div",
+        "children": [
+          {
+            "sourceTag": "span",
+            "type": "custom",
+            "children": [
+              "🔵 NORMAL"
+            ],
+            "properties": {
+              "class": "target-name"
+            },
+            "dataUid": "uid-8"
+          },
+          {
+            "sourceTag": "span",
+            "type": "custom",
+            "children": [
+              "100 pts — Standard target"
+            ],
+            "properties": {
+              "class": "target-desc"
+            },
+            "dataUid": "uid-9"
+          }
+        ],
+        "properties": {
+          "class": "help-row"
+        },
+        "dataUid": "uid-7"
+      },
+      {
+        "type": "container",
+        "sourceTag": "div",
+        "children": [
+          {
+            "sourceTag": "span",
+            "type": "custom",
+            "children": [
+              "⭐ BONUS"
+            ],
+            "properties": {
+              "class": "target-name"
+            },
+            "dataUid": "uid-11"
+          },
+          {
+            "sourceTag": "span",
+            "type": "custom",
+            "children": [
+              "300 pts — Golden, extra points"
+            ],
+            "properties": {
+              "class": "target-desc"
+            },
+            "dataUid": "uid-12"
+          }
+        ],
+        "properties": {
+          "class": "help-row"
+        },
+        "dataUid": "uid-10"
+      },
+      {
+        "type": "container",
+        "sourceTag": "div",
+        "children": [
+          {
+            "sourceTag": "span",
+            "type": "custom",
+            "children": [
+              "⚡ SPEED"
+            ],
+            "properties": {
+              "class": "target-name"
+            },
+            "dataUid": "uid-14"
+          },
+          {
+            "sourceTag": "span",
+            "type": "custom",
+            "children": [
+              "200 pts — Fast, quick reflexes"
+            ],
+            "properties": {
+              "class": "target-desc"
+            },
+            "dataUid": "uid-15"
+          }
+        ],
+        "properties": {
+          "class": "help-row"
+        },
+        "dataUid": "uid-13"
+      },
+      {
+        "type": "container",
+        "sourceTag": "div",
+        "children": [
+          {
+            "sourceTag": "span",
+            "type": "custom",
+            "children": [
+              "🟣 TANK"
+            ],
+            "properties": {
+              "class": "target-name"
+            },
+            "dataUid": "uid-17"
+          },
+          {
+            "sourceTag": "span",
+            "type": "custom",
+            "children": [
+              "500 pts — Needs 2 hits"
+            ],
+            "properties": {
+              "class": "target-desc"
+            },
+            "dataUid": "uid-18"
+          }
+        ],
+        "properties": {
+          "class": "help-row"
+        },
+        "dataUid": "uid-16"
+      },
+      {
+        "type": "container",
+        "sourceTag": "div",
+        "children": [
+          {
+            "sourceTag": "span",
+            "type": "custom",
+            "children": [
+              "💣 BOMB"
+            ],
+            "properties": {
+              "class": "target-name"
+            },
+            "dataUid": "uid-20"
+          },
+          {
+            "sourceTag": "span",
+            "type": "custom",
+            "children": [
+              "-200 pts — Don't hit these!"
+            ],
+            "properties": {
+              "class": "target-desc"
+            },
+            "dataUid": "uid-21"
+          }
+        ],
+        "properties": {
+          "class": "help-row"
+        },
+        "dataUid": "uid-19"
+      },
+      {
+        "type": "container",
+        "sourceTag": "div",
+        "children": [
+          {
+            "sourceTag": "span",
+            "type": "custom",
+            "children": [
+              "👻 GHOST"
+            ],
+            "properties": {
+              "class": "target-name"
+            },
+            "dataUid": "uid-23"
+          },
+          {
+            "sourceTag": "span",
+            "type": "custom",
+            "children": [
+              "400 pts — Flickers, hard to hit"
+            ],
+            "properties": {
+              "class": "target-desc"
+            },
+            "dataUid": "uid-24"
+          }
+        ],
+        "properties": {
+          "class": "help-row"
+        },
+        "dataUid": "uid-22"
+      },
+      {
+        "type": "container",
+        "sourceTag": "div",
+        "children": [
+          {
+            "sourceTag": "span",
+            "type": "custom",
+            "children": [
+              "👑 KING"
+            ],
+            "properties": {
+              "class": "target-name"
+            },
+            "dataUid": "uid-26"
+          },
+          {
+            "sourceTag": "span",
+            "type": "custom",
+            "children": [
+              "1000 pts — Very fast, very rare"
+            ],
+            "properties": {
+              "class": "target-desc"
+            },
+            "dataUid": "uid-27"
+          }
+        ],
+        "properties": {
+          "class": "help-row"
+        },
+        "dataUid": "uid-25"
+      },
+      {
+        "type": "container",
+        "sourceTag": "div",
+        "children": [
+          {
+            "sourceTag": "span",
+            "type": "custom",
+            "children": [
+              "🎁 MYSTERY"
+            ],
+            "properties": {
+              "class": "target-name"
+            },
+            "dataUid": "uid-29"
+          },
+          {
+            "sourceTag": "span",
+            "type": "custom",
+            "children": [
+              "??? pts — Random reward"
+            ],
+            "properties": {
+              "class": "target-desc"
+            },
+            "dataUid": "uid-30"
+          }
+        ],
+        "properties": {
+          "class": "help-row"
+        },
+        "dataUid": "uid-28"
+      },
+      {
+        "sourceTag": "span",
+        "type": "custom",
+        "children": [
+          "COMBOS"
+        ],
+        "properties": {
+          "class": "help-section"
+        },
+        "dataUid": "uid-31"
+      },
+      {
+        "sourceTag": "span",
+        "type": "custom",
+        "children": [
+          "Consecutive hits build your combo multiplier."
+        ],
+        "properties": {
+          "class": "help-text"
+        },
+        "dataUid": "uid-32"
+      },
+      {
+        "sourceTag": "span",
+        "type": "custom",
+        "children": [
+          "Miss a target and your combo resets!"
+        ],
+        "properties": {
+          "class": "help-text"
+        },
+        "dataUid": "uid-33"
+      },
+      {
+        "sourceTag": "span",
+        "type": "custom",
+        "children": [
+          "POWER-UPS"
+        ],
+        "properties": {
+          "class": "help-section"
+        },
+        "dataUid": "uid-34"
+      },
+      {
+        "sourceTag": "span",
+        "type": "custom",
+        "children": [
+          "Random drops: Time Slow, Size Up, Score×2, Magnet, Freeze"
+        ],
+        "properties": {
+          "class": "help-text"
+        },
+        "dataUid": "uid-35"
+      },
+      {
+        "type": "container",
+        "sourceTag": "div",
+        "children": [
+          {
+            "sourceTag": "span",
+            "type": "custom",
+            "children": [
+              "← BACK"
+            ],
+            "properties": {
+              "class": "back-text"
+            },
+            "dataUid": "uid-37"
+          }
+        ],
+        "properties": {
+          "id": "help-back-btn",
+          "class": "back-btn",
+          "cursor": "pointer"
+        },
+        "dataUid": "uid-36"
+      }
+    ],
+    "properties": {
+      "class": "help-panel"
+    },
+    "dataUid": "uid-1"
+  },
+  "classes": {
+    "help-panel": {
+      "content": {
+        "display": "flex",
+        "flexDirection": "column",
+        "alignItems": "center",
+        "padding": "3",
+        "backgroundColor": "rgba(0, 0, 0, 0.92)",
+        "borderColor": "#ff4400",
+        "borderWidth": "0.12",
+        "borderRadius": 2,
+        "gap": "1.2"
+      }
+    },
+    "help-title": {
+      "content": {
+        "fontSize": "3",
+        "color": "#ff4400",
+        "fontWeight": "bold"
+      }
+    },
+    "help-section": {
+      "content": {
+        "fontSize": "1.8",
+        "color": "#ff8844",
+        "fontWeight": "bold"
+      }
+    },
+    "help-text": {
+      "content": {
+        "fontSize": "1.3",
+        "color": "#ccaa88"
+      }
+    },
+    "help-highlight": {
+      "content": {
+        "fontSize": "1.3",
+        "color": "#ff6633",
+        "fontWeight": "bold"
+      }
+    },
+    "help-row": {
+      "content": {
+        "display": "flex",
+        "flexDirection": "row",
+        "gap": "1",
+        "alignItems": "center"
+      }
+    },
+    "target-icon": {
+      "content": {
+        "fontSize": "2",
+        "color": "#00ccff"
+      }
+    },
+    "target-name": {
+      "content": {
+        "fontSize": "1.3",
+        "color": "#ff6633",
+        "fontWeight": "bold",
+        "minWidth": "12"
+      }
+    },
+    "target-desc": {
+      "content": {
+        "fontSize": "1.1",
+        "color": "#aa8866"
+      }
+    },
+    "back-btn": {
+      "content": {
+        "display": "flex",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "padding": "1 3",
+        "backgroundColor": "rgba(255, 68, 0, 0.1)",
+        "borderColor": "#663322",
+        "borderWidth": "0.08",
+        "borderRadius": 0.8,
+        "cursor": "pointer",
+        "hover": {
+          "backgroundColor": "rgba(255, 68, 0, 0.3)"
+        }
+      }
+    },
+    "back-text": {
+      "content": {
+        "fontSize": "1.6",
+        "color": "#cc5533"
+      }
+    }
+  },
+  "ranges": {
+    "help-panel": {
+      "start": {
+        "line": 1,
+        "column": 2
+      },
+      "end": {
+        "line": 1,
+        "column": 13
+      }
+    },
+    "help-title": {
+      "start": {
+        "line": 12,
+        "column": 2
+      },
+      "end": {
+        "line": 12,
+        "column": 13
+      }
+    },
+    "help-section": {
+      "start": {
+        "line": 17,
+        "column": 2
+      },
+      "end": {
+        "line": 17,
+        "column": 15
+      }
+    },
+    "help-text": {
+      "start": {
+        "line": 22,
+        "column": 2
+      },
+      "end": {
+        "line": 22,
+        "column": 12
+      }
+    },
+    "help-highlight": {
+      "start": {
+        "line": 26,
+        "column": 2
+      },
+      "end": {
+        "line": 26,
+        "column": 17
+      }
+    },
+    "help-row": {
+      "start": {
+        "line": 31,
+        "column": 2
+      },
+      "end": {
+        "line": 31,
+        "column": 11
+      }
+    },
+    "target-icon": {
+      "start": {
+        "line": 37,
+        "column": 2
+      },
+      "end": {
+        "line": 37,
+        "column": 14
+      }
+    },
+    "target-name": {
+      "start": {
+        "line": 41,
+        "column": 2
+      },
+      "end": {
+        "line": 41,
+        "column": 14
+      }
+    },
+    "target-desc": {
+      "start": {
+        "line": 47,
+        "column": 2
+      },
+      "end": {
+        "line": 47,
+        "column": 14
+      }
+    },
+    "back-btn": {
+      "start": {
+        "line": 51,
+        "column": 2
+      },
+      "end": {
+        "line": 51,
+        "column": 11
+      }
+    },
+    "back-text": {
+      "start": {
+        "line": 65,
+        "column": 2
+      },
+      "end": {
+        "line": 65,
+        "column": 12
+      }
+    },
+    "uid-1": {
+      "start": {
+        "line": 70,
+        "column": 0
+      },
+      "end": {
+        "line": 90,
+        "column": 6
+      }
+    },
+    "uid-2": {
+      "start": {
+        "line": 71,
+        "column": 2
+      },
+      "end": {
+        "line": 71,
+        "column": 47
+      }
+    },
+    "uid-3": {
+      "start": {
+        "line": 72,
+        "column": 2
+      },
+      "end": {
+        "line": 72,
+        "column": 44
+      }
+    },
+    "uid-4": {
+      "start": {
+        "line": 73,
+        "column": 2
+      },
+      "end": {
+        "line": 73,
+        "column": 68
+      }
+    },
+    "uid-5": {
+      "start": {
+        "line": 74,
+        "column": 2
+      },
+      "end": {
+        "line": 74,
+        "column": 69
+      }
+    },
+    "uid-6": {
+      "start": {
+        "line": 75,
+        "column": 2
+      },
+      "end": {
+        "line": 75,
+        "column": 43
+      }
+    },
+    "uid-7": {
+      "start": {
+        "line": 76,
+        "column": 2
+      },
+      "end": {
+        "line": 76,
+        "column": 130
+      }
+    },
+    "uid-8": {
+      "start": {
+        "line": 76,
+        "column": 24
+      },
+      "end": {
+        "line": 76,
+        "column": 66
+      }
+    },
+    "uid-9": {
+      "start": {
+        "line": 76,
+        "column": 66
+      },
+      "end": {
+        "line": 76,
+        "column": 124
+      }
+    },
+    "uid-10": {
+      "start": {
+        "line": 77,
+        "column": 2
+      },
+      "end": {
+        "line": 77,
+        "column": 133
+      }
+    },
+    "uid-11": {
+      "start": {
+        "line": 77,
+        "column": 24
+      },
+      "end": {
+        "line": 77,
+        "column": 64
+      }
+    },
+    "uid-12": {
+      "start": {
+        "line": 77,
+        "column": 64
+      },
+      "end": {
+        "line": 77,
+        "column": 127
+      }
+    },
+    "uid-13": {
+      "start": {
+        "line": 78,
+        "column": 2
+      },
+      "end": {
+        "line": 78,
+        "column": 133
+      }
+    },
+    "uid-14": {
+      "start": {
+        "line": 78,
+        "column": 24
+      },
+      "end": {
+        "line": 78,
+        "column": 64
+      }
+    },
+    "uid-15": {
+      "start": {
+        "line": 78,
+        "column": 64
+      },
+      "end": {
+        "line": 78,
+        "column": 127
+      }
+    },
+    "uid-16": {
+      "start": {
+        "line": 79,
+        "column": 2
+      },
+      "end": {
+        "line": 79,
+        "column": 125
+      }
+    },
+    "uid-17": {
+      "start": {
+        "line": 79,
+        "column": 24
+      },
+      "end": {
+        "line": 79,
+        "column": 64
+      }
+    },
+    "uid-18": {
+      "start": {
+        "line": 79,
+        "column": 64
+      },
+      "end": {
+        "line": 79,
+        "column": 119
+      }
+    },
+    "uid-19": {
+      "start": {
+        "line": 80,
+        "column": 2
+      },
+      "end": {
+        "line": 80,
+        "column": 130
+      }
+    },
+    "uid-20": {
+      "start": {
+        "line": 80,
+        "column": 24
+      },
+      "end": {
+        "line": 80,
+        "column": 64
+      }
+    },
+    "uid-21": {
+      "start": {
+        "line": 80,
+        "column": 64
+      },
+      "end": {
+        "line": 80,
+        "column": 124
+      }
+    },
+    "uid-22": {
+      "start": {
+        "line": 81,
+        "column": 2
+      },
+      "end": {
+        "line": 81,
+        "column": 135
+      }
+    },
+    "uid-23": {
+      "start": {
+        "line": 81,
+        "column": 24
+      },
+      "end": {
+        "line": 81,
+        "column": 65
+      }
+    },
+    "uid-24": {
+      "start": {
+        "line": 81,
+        "column": 65
+      },
+      "end": {
+        "line": 81,
+        "column": 129
+      }
+    },
+    "uid-25": {
+      "start": {
+        "line": 82,
+        "column": 2
+      },
+      "end": {
+        "line": 82,
+        "column": 134
+      }
+    },
+    "uid-26": {
+      "start": {
+        "line": 82,
+        "column": 24
+      },
+      "end": {
+        "line": 82,
+        "column": 64
+      }
+    },
+    "uid-27": {
+      "start": {
+        "line": 82,
+        "column": 64
+      },
+      "end": {
+        "line": 82,
+        "column": 128
+      }
+    },
+    "uid-28": {
+      "start": {
+        "line": 83,
+        "column": 2
+      },
+      "end": {
+        "line": 83,
+        "column": 129
+      }
+    },
+    "uid-29": {
+      "start": {
+        "line": 83,
+        "column": 24
+      },
+      "end": {
+        "line": 83,
+        "column": 67
+      }
+    },
+    "uid-30": {
+      "start": {
+        "line": 83,
+        "column": 67
+      },
+      "end": {
+        "line": 83,
+        "column": 123
+      }
+    },
+    "uid-31": {
+      "start": {
+        "line": 84,
+        "column": 2
+      },
+      "end": {
+        "line": 84,
+        "column": 42
+      }
+    },
+    "uid-32": {
+      "start": {
+        "line": 85,
+        "column": 2
+      },
+      "end": {
+        "line": 85,
+        "column": 78
+      }
+    },
+    "uid-33": {
+      "start": {
+        "line": 86,
+        "column": 2
+      },
+      "end": {
+        "line": 86,
+        "column": 69
+      }
+    },
+    "uid-34": {
+      "start": {
+        "line": 87,
+        "column": 2
+      },
+      "end": {
+        "line": 87,
+        "column": 45
+      }
+    },
+    "uid-35": {
+      "start": {
+        "line": 88,
+        "column": 2
+      },
+      "end": {
+        "line": 88,
+        "column": 90
+      }
+    },
+    "uid-36": {
+      "start": {
+        "line": 89,
+        "column": 2
+      },
+      "end": {
+        "line": 89,
+        "column": 103
+      }
+    },
+    "uid-37": {
+      "start": {
+        "line": 89,
+        "column": 60
+      },
+      "end": {
+        "line": 89,
+        "column": 97
+      }
+    }
+  }
+}

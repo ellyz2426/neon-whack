@@ -1,0 +1,326 @@
+{
+  "element": {
+    "type": "container",
+    "sourceTag": "div",
+    "children": [
+      {
+        "sourceTag": "span",
+        "type": "custom",
+        "children": [
+          "🔨 MALLETS"
+        ],
+        "properties": {
+          "class": "shop-title"
+        },
+        "dataUid": "uid-2"
+      },
+      {
+        "type": "container",
+        "sourceTag": "div",
+        "children": [],
+        "properties": {
+          "id": "shop-list",
+          "class": "shop-grid"
+        },
+        "dataUid": "uid-3"
+      },
+      {
+        "type": "container",
+        "sourceTag": "div",
+        "children": [
+          {
+            "sourceTag": "span",
+            "type": "custom",
+            "children": [
+              "← BACK"
+            ],
+            "properties": {
+              "class": "back-text"
+            },
+            "dataUid": "uid-5"
+          }
+        ],
+        "properties": {
+          "id": "shop-back-btn",
+          "class": "back-btn",
+          "cursor": "pointer"
+        },
+        "dataUid": "uid-4"
+      }
+    ],
+    "properties": {
+      "class": "shop-panel"
+    },
+    "dataUid": "uid-1"
+  },
+  "classes": {
+    "shop-panel": {
+      "content": {
+        "display": "flex",
+        "flexDirection": "column",
+        "alignItems": "center",
+        "padding": "3",
+        "backgroundColor": "rgba(0, 0, 0, 0.92)",
+        "borderColor": "#ff4400",
+        "borderWidth": "0.12",
+        "borderRadius": 2,
+        "gap": "1"
+      }
+    },
+    "shop-title": {
+      "content": {
+        "fontSize": "3",
+        "color": "#ff4400",
+        "fontWeight": "bold"
+      }
+    },
+    "shop-grid": {
+      "content": {
+        "display": "flex",
+        "flexDirection": "column",
+        "gap": "0.8"
+      }
+    },
+    "shop-item": {
+      "content": {
+        "display": "flex",
+        "flexDirection": "row",
+        "alignItems": "center",
+        "padding": "0.8 2",
+        "backgroundColor": "rgba(255, 68, 0, 0.12)",
+        "borderColor": "#442211",
+        "borderWidth": "0.06",
+        "borderRadius": 0.8,
+        "gap": "1.5",
+        "cursor": "pointer",
+        "hover": {
+          "backgroundColor": "rgba(255, 68, 0, 0.3)"
+        }
+      }
+    },
+    "shop-equipped": {
+      "content": {
+        "display": "flex",
+        "flexDirection": "row",
+        "alignItems": "center",
+        "padding": "0.8 2",
+        "backgroundColor": "rgba(255, 170, 0, 0.2)",
+        "borderColor": "#ffaa00",
+        "borderWidth": "0.08",
+        "borderRadius": 0.8,
+        "gap": "1.5"
+      }
+    },
+    "shop-icon": {
+      "content": {
+        "fontSize": "2.5",
+        "color": "#ff6633"
+      }
+    },
+    "shop-name": {
+      "content": {
+        "fontSize": "1.5",
+        "color": "#ff6633",
+        "fontWeight": "bold",
+        "minWidth": "14"
+      }
+    },
+    "shop-req": {
+      "content": {
+        "fontSize": "1.1",
+        "color": "#aa8866"
+      }
+    },
+    "shop-locked": {
+      "content": {
+        "fontSize": "1.5",
+        "color": "#555555",
+        "minWidth": "14"
+      }
+    },
+    "back-btn": {
+      "content": {
+        "display": "flex",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "padding": "1 3",
+        "backgroundColor": "rgba(255, 68, 0, 0.1)",
+        "borderColor": "#663322",
+        "borderWidth": "0.08",
+        "borderRadius": 0.8,
+        "cursor": "pointer",
+        "hover": {
+          "backgroundColor": "rgba(255, 68, 0, 0.3)"
+        }
+      }
+    },
+    "back-text": {
+      "content": {
+        "fontSize": "1.6",
+        "color": "#cc5533"
+      }
+    }
+  },
+  "ranges": {
+    "shop-panel": {
+      "start": {
+        "line": 1,
+        "column": 2
+      },
+      "end": {
+        "line": 1,
+        "column": 13
+      }
+    },
+    "shop-title": {
+      "start": {
+        "line": 12,
+        "column": 2
+      },
+      "end": {
+        "line": 12,
+        "column": 13
+      }
+    },
+    "shop-grid": {
+      "start": {
+        "line": 17,
+        "column": 2
+      },
+      "end": {
+        "line": 17,
+        "column": 12
+      }
+    },
+    "shop-item": {
+      "start": {
+        "line": 22,
+        "column": 2
+      },
+      "end": {
+        "line": 22,
+        "column": 12
+      }
+    },
+    "shop-equipped": {
+      "start": {
+        "line": 37,
+        "column": 2
+      },
+      "end": {
+        "line": 37,
+        "column": 16
+      }
+    },
+    "shop-icon": {
+      "start": {
+        "line": 48,
+        "column": 2
+      },
+      "end": {
+        "line": 48,
+        "column": 12
+      }
+    },
+    "shop-name": {
+      "start": {
+        "line": 52,
+        "column": 2
+      },
+      "end": {
+        "line": 52,
+        "column": 12
+      }
+    },
+    "shop-req": {
+      "start": {
+        "line": 58,
+        "column": 2
+      },
+      "end": {
+        "line": 58,
+        "column": 11
+      }
+    },
+    "shop-locked": {
+      "start": {
+        "line": 62,
+        "column": 2
+      },
+      "end": {
+        "line": 62,
+        "column": 14
+      }
+    },
+    "back-btn": {
+      "start": {
+        "line": 67,
+        "column": 2
+      },
+      "end": {
+        "line": 67,
+        "column": 11
+      }
+    },
+    "back-text": {
+      "start": {
+        "line": 81,
+        "column": 2
+      },
+      "end": {
+        "line": 81,
+        "column": 12
+      }
+    },
+    "uid-1": {
+      "start": {
+        "line": 86,
+        "column": 0
+      },
+      "end": {
+        "line": 91,
+        "column": 6
+      }
+    },
+    "uid-2": {
+      "start": {
+        "line": 87,
+        "column": 2
+      },
+      "end": {
+        "line": 87,
+        "column": 44
+      }
+    },
+    "uid-3": {
+      "start": {
+        "line": 88,
+        "column": 2
+      },
+      "end": {
+        "line": 89,
+        "column": 8
+      }
+    },
+    "uid-4": {
+      "start": {
+        "line": 90,
+        "column": 2
+      },
+      "end": {
+        "line": 90,
+        "column": 103
+      }
+    },
+    "uid-5": {
+      "start": {
+        "line": 90,
+        "column": 60
+      },
+      "end": {
+        "line": 90,
+        "column": 97
+      }
+    }
+  }
+}

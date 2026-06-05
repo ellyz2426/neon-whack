@@ -1,0 +1,112 @@
+<style>
+  .go-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4;
+    background-color: rgba(0, 0, 0, 0.92);
+    border-color: #ff4400;
+    border-width: 0.15;
+    border-radius: 2;
+    gap: 1.5;
+  }
+  .go-title {
+    font-size: 4;
+    color: #ff4400;
+    font-weight: bold;
+  }
+  .go-subtitle {
+    font-size: 2;
+    color: #ff8844;
+  }
+  .go-stat-row {
+    display: flex;
+    flex-direction: row;
+    gap: 3;
+  }
+  .go-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .go-stat-label {
+    font-size: 1.2;
+    color: #887766;
+  }
+  .go-stat-value {
+    font-size: 2.5;
+    color: #ff6633;
+    font-weight: bold;
+  }
+  .go-new-best {
+    font-size: 1.8;
+    color: #ffcc00;
+    font-weight: bold;
+  }
+  .go-xp-text {
+    font-size: 1.5;
+    color: #44ff44;
+  }
+  .go-btn-row {
+    display: flex;
+    flex-direction: row;
+    gap: 2;
+  }
+  .go-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2 3;
+    background-color: rgba(255, 68, 0, 0.2);
+    border-color: #ff4400;
+    border-width: 0.1;
+    border-radius: 1;
+    cursor: pointer;
+  }
+  .go-btn:hover {
+    background-color: rgba(255, 68, 0, 0.4);
+  }
+  .go-btn-text {
+    font-size: 1.8;
+    color: #ff6633;
+    font-weight: bold;
+  }
+</style>
+<div class="go-panel">
+  <span id="go-title" class="go-title">GAME OVER</span>
+  <span id="go-subtitle" class="go-subtitle">CLASSIC MODE</span>
+  <span id="go-new-best" class="go-new-best"></span>
+  <div class="go-stat-row">
+    <div class="go-stat">
+      <span class="go-stat-label">SCORE</span>
+      <span id="go-score" class="go-stat-value">0</span>
+    </div>
+    <div class="go-stat">
+      <span class="go-stat-label">HITS</span>
+      <span id="go-hits" class="go-stat-value">0</span>
+    </div>
+    <div class="go-stat">
+      <span class="go-stat-label">MISSES</span>
+      <span id="go-misses" class="go-stat-value">0</span>
+    </div>
+  </div>
+  <div class="go-stat-row">
+    <div class="go-stat">
+      <span class="go-stat-label">ACCURACY</span>
+      <span id="go-accuracy" class="go-stat-value">0%</span>
+    </div>
+    <div class="go-stat">
+      <span class="go-stat-label">BEST COMBO</span>
+      <span id="go-best-combo" class="go-stat-value">x0</span>
+    </div>
+    <div class="go-stat">
+      <span class="go-stat-label">TIME</span>
+      <span id="go-time" class="go-stat-value">0s</span>
+    </div>
+  </div>
+  <span id="go-xp" class="go-xp-text"></span>
+  <div class="go-btn-row">
+    <div id="go-retry-btn" class="go-btn" cursor="pointer"><span class="go-btn-text">🔄 RETRY</span></div>
+    <div id="go-menu-btn" class="go-btn" cursor="pointer"><span class="go-btn-text">🏠 MENU</span></div>
+  </div>
+</div>

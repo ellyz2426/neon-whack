@@ -1,0 +1,20 @@
+<style>
+  .cd-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4;
+    background-color: rgba(0, 0, 0, 0.85);
+    border-color: #ff4400;
+    border-width: 0.15;
+    border-radius: 3;
+  }
+  .cd-text {
+    font-size: 10;
+    color: #ff4400;
+    font-weight: bold;
+  }
+</style>
+<div class="cd-panel">
+  <span id="cd-value" class="cd-text">3</span>
+</div>

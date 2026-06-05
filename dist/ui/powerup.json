@@ -1,0 +1,123 @@
+{
+  "element": {
+    "type": "container",
+    "sourceTag": "div",
+    "children": [
+      {
+        "sourceTag": "span",
+        "type": "custom",
+        "children": [],
+        "properties": {
+          "id": "powerup-name",
+          "class": "powerup-name"
+        },
+        "dataUid": "uid-2"
+      },
+      {
+        "sourceTag": "span",
+        "type": "custom",
+        "children": [],
+        "properties": {
+          "id": "powerup-time",
+          "class": "powerup-time"
+        },
+        "dataUid": "uid-3"
+      }
+    ],
+    "properties": {
+      "class": "powerup-panel"
+    },
+    "dataUid": "uid-1"
+  },
+  "classes": {
+    "powerup-panel": {
+      "content": {
+        "display": "flex",
+        "flexDirection": "row",
+        "alignItems": "center",
+        "padding": "0.8 1.5",
+        "backgroundColor": "rgba(0, 0, 0, 0.7)",
+        "borderColor": "#44ff44",
+        "borderWidth": "0.08",
+        "borderRadius": 0.8,
+        "gap": "1"
+      }
+    },
+    "powerup-name": {
+      "content": {
+        "fontSize": "1.5",
+        "color": "#44ff44",
+        "fontWeight": "bold"
+      }
+    },
+    "powerup-time": {
+      "content": {
+        "fontSize": "1.5",
+        "color": "#ffcc00",
+        "fontWeight": "bold"
+      }
+    }
+  },
+  "ranges": {
+    "powerup-panel": {
+      "start": {
+        "line": 1,
+        "column": 2
+      },
+      "end": {
+        "line": 1,
+        "column": 16
+      }
+    },
+    "powerup-name": {
+      "start": {
+        "line": 12,
+        "column": 2
+      },
+      "end": {
+        "line": 12,
+        "column": 15
+      }
+    },
+    "powerup-time": {
+      "start": {
+        "line": 17,
+        "column": 2
+      },
+      "end": {
+        "line": 17,
+        "column": 15
+      }
+    },
+    "uid-1": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 26,
+        "column": 6
+      }
+    },
+    "uid-2": {
+      "start": {
+        "line": 24,
+        "column": 2
+      },
+      "end": {
+        "line": 24,
+        "column": 54
+      }
+    },
+    "uid-3": {
+      "start": {
+        "line": 25,
+        "column": 2
+      },
+      "end": {
+        "line": 25,
+        "column": 54
+      }
+    }
+  }
+}

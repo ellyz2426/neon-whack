@@ -1,0 +1,27 @@
+<style>
+  .powerup-panel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.8 1.5;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-color: #44ff44;
+    border-width: 0.08;
+    border-radius: 0.8;
+    gap: 1;
+  }
+  .powerup-name {
+    font-size: 1.5;
+    color: #44ff44;
+    font-weight: bold;
+  }
+  .powerup-time {
+    font-size: 1.5;
+    color: #ffcc00;
+    font-weight: bold;
+  }
+</style>
+<div class="powerup-panel">
+  <span id="powerup-name" class="powerup-name"></span>
+  <span id="powerup-time" class="powerup-time"></span>
+</div>

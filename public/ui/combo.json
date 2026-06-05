@@ -1,0 +1,85 @@
+{
+  "element": {
+    "type": "container",
+    "sourceTag": "div",
+    "children": [
+      {
+        "sourceTag": "span",
+        "type": "custom",
+        "children": [],
+        "properties": {
+          "id": "combo-text",
+          "class": "combo-text"
+        },
+        "dataUid": "uid-2"
+      }
+    ],
+    "properties": {
+      "class": "combo-panel"
+    },
+    "dataUid": "uid-1"
+  },
+  "classes": {
+    "combo-panel": {
+      "content": {
+        "display": "flex",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "padding": "1 2",
+        "backgroundColor": "rgba(0, 0, 0, 0.7)",
+        "borderColor": "#ffaa00",
+        "borderWidth": "0.1",
+        "borderRadius": 1
+      }
+    },
+    "combo-text": {
+      "content": {
+        "fontSize": "4",
+        "color": "#ffaa00",
+        "fontWeight": "bold"
+      }
+    }
+  },
+  "ranges": {
+    "combo-panel": {
+      "start": {
+        "line": 1,
+        "column": 2
+      },
+      "end": {
+        "line": 1,
+        "column": 14
+      }
+    },
+    "combo-text": {
+      "start": {
+        "line": 11,
+        "column": 2
+      },
+      "end": {
+        "line": 11,
+        "column": 13
+      }
+    },
+    "uid-1": {
+      "start": {
+        "line": 17,
+        "column": 0
+      },
+      "end": {
+        "line": 19,
+        "column": 6
+      }
+    },
+    "uid-2": {
+      "start": {
+        "line": 18,
+        "column": 2
+      },
+      "end": {
+        "line": 18,
+        "column": 50
+      }
+    }
+  }
+}

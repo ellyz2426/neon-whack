@@ -1,0 +1,25 @@
+<style>
+  .toast-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1 2;
+    background-color: rgba(0, 0, 0, 0.85);
+    border-color: #ffaa00;
+    border-width: 0.1;
+    border-radius: 1;
+  }
+  .toast-text {
+    font-size: 1.8;
+    color: #ffaa00;
+    font-weight: bold;
+  }
+  .toast-desc {
+    font-size: 1.2;
+    color: #cc8800;
+  }
+</style>
+<div class="toast-panel">
+  <span id="toast-text" class="toast-text"></span>
+  <span id="toast-desc" class="toast-desc"></span>
+</div>
