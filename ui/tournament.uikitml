@@ -1,0 +1,63 @@
+<style>
+  .tourn-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4;
+    background-color: rgba(0, 0, 0, 0.92);
+    border-color: #ffaa00;
+    border-width: 0.15;
+    border-radius: 2;
+    gap: 2;
+  }
+  .tourn-title {
+    font-size: 3.5;
+    color: #ffaa00;
+    font-weight: bold;
+  }
+  .tourn-round-text {
+    font-size: 2;
+    color: #ff8844;
+  }
+  .tourn-score-text {
+    font-size: 2.5;
+    color: #ff6633;
+    font-weight: bold;
+  }
+  .tourn-total-text {
+    font-size: 2;
+    color: #ffcc00;
+    font-weight: bold;
+  }
+  .tourn-next-text {
+    font-size: 1.5;
+    color: #aa8866;
+  }
+  .tourn-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5 4;
+    background-color: rgba(255, 170, 0, 0.2);
+    border-color: #ffaa00;
+    border-width: 0.1;
+    border-radius: 1;
+    cursor: pointer;
+  }
+  .tourn-btn:hover {
+    background-color: rgba(255, 170, 0, 0.4);
+  }
+  .tourn-btn-text {
+    font-size: 2;
+    color: #ffcc00;
+    font-weight: bold;
+  }
+</style>
+<div class="tourn-panel">
+  <span class="tourn-title">🏟️ TOURNAMENT</span>
+  <span id="tourn-round" class="tourn-round-text">ROUND 1 COMPLETE!</span>
+  <span id="tourn-score" class="tourn-score-text">Round Score: 0</span>
+  <span id="tourn-total" class="tourn-total-text">Total: 0</span>
+  <span id="tourn-next" class="tourn-next-text">Next: Round 2 of 5</span>
+  <div id="tournament-next-btn" class="tourn-btn" cursor="pointer"><span class="tourn-btn-text">▶ NEXT ROUND</span></div>
+</div>

@@ -1,0 +1,136 @@
+<style>
+  .tutorial-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4;
+    background-color: rgba(0, 0, 0, 0.92);
+    border-color: #ff4400;
+    border-width: 0.15;
+    border-radius: 2;
+    gap: 1.5;
+  }
+  .tutorial-title {
+    font-size: 3.5;
+    color: #ff4400;
+    font-weight: bold;
+  }
+  .tutorial-subtitle {
+    font-size: 2;
+    color: #ff8844;
+  }
+  .tutorial-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8;
+    padding: 1.5;
+    background-color: rgba(255, 68, 0, 0.08);
+    border-color: #442211;
+    border-width: 0.06;
+    border-radius: 1;
+  }
+  .tutorial-heading {
+    font-size: 1.8;
+    color: #ffaa00;
+    font-weight: bold;
+  }
+  .tutorial-text {
+    font-size: 1.3;
+    color: #cc8866;
+  }
+  .tutorial-target-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5;
+    flex-wrap: wrap;
+  }
+  .tutorial-target {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3;
+  }
+  .target-icon {
+    font-size: 1.8;
+    color: #ff6633;
+  }
+  .target-label {
+    font-size: 1;
+    color: #887766;
+  }
+  .tutorial-btn-row {
+    display: flex;
+    flex-direction: row;
+    gap: 2;
+  }
+  .tutorial-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2 3;
+    background-color: rgba(255, 68, 0, 0.2);
+    border-color: #ff4400;
+    border-width: 0.1;
+    border-radius: 1;
+    cursor: pointer;
+  }
+  .tutorial-btn:hover {
+    background-color: rgba(255, 68, 0, 0.4);
+  }
+  .tutorial-btn-text {
+    font-size: 1.8;
+    color: #ff6633;
+    font-weight: bold;
+  }
+  .skip-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1 2.5;
+    background-color: rgba(100, 100, 100, 0.15);
+    border-color: #444444;
+    border-width: 0.08;
+    border-radius: 0.8;
+    cursor: pointer;
+  }
+  .skip-btn:hover {
+    background-color: rgba(100, 100, 100, 0.3);
+  }
+  .skip-text {
+    font-size: 1.4;
+    color: #888888;
+  }
+</style>
+<div class="tutorial-panel">
+  <span class="tutorial-title">🔨 HOW TO PLAY</span>
+  <span class="tutorial-subtitle">Welcome to Neon Whack!</span>
+  <div class="tutorial-section">
+    <span class="tutorial-heading">🎯 GOAL</span>
+    <span class="tutorial-text">Whack targets as they pop up from the holes!</span>
+    <span class="tutorial-text">Click or use your VR controller trigger to hit them.</span>
+    <span class="tutorial-text">Build combos for bonus multipliers!</span>
+  </div>
+  <div class="tutorial-section">
+    <span class="tutorial-heading">⚡ TARGETS</span>
+    <div class="tutorial-target-row">
+      <div class="tutorial-target"><span class="target-icon">🔵</span><span class="target-label">Normal</span></div>
+      <div class="tutorial-target"><span class="target-icon">🟡</span><span class="target-label">Bonus</span></div>
+      <div class="tutorial-target"><span class="target-icon">🟢</span><span class="target-label">Speed</span></div>
+      <div class="tutorial-target"><span class="target-icon">🟣</span><span class="target-label">Tank (2 hits)</span></div>
+      <div class="tutorial-target"><span class="target-icon">🔴</span><span class="target-label">BOMB! Avoid!</span></div>
+      <div class="tutorial-target"><span class="target-icon">⚪</span><span class="target-label">Ghost</span></div>
+      <div class="tutorial-target"><span class="target-icon">👑</span><span class="target-label">King (rare)</span></div>
+      <div class="tutorial-target"><span class="target-icon">🎁</span><span class="target-label">Mystery</span></div>
+    </div>
+  </div>
+  <div class="tutorial-section">
+    <span class="tutorial-heading">🎮 CONTROLS</span>
+    <span class="tutorial-text">🖱️ Browser: Click targets to whack them</span>
+    <span class="tutorial-text">🎮 VR: Trigger to whack, B to pause</span>
+    <span class="tutorial-text">⌨️ ESC to pause</span>
+  </div>
+  <div class="tutorial-btn-row">
+    <div id="tutorial-play" class="tutorial-btn" cursor="pointer"><span class="tutorial-btn-text">▶ PLAY NOW</span></div>
+    <div id="tutorial-skip" class="skip-btn" cursor="pointer"><span class="skip-text">SKIP → MODES</span></div>
+  </div>
+</div>

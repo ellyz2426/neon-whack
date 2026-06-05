@@ -8,7 +8,7 @@
     border-color: #ff4400;
     border-width: 0.12;
     border-radius: 2;
-    gap: 1.5;
+    gap: 1.2;
   }
   .mode-title {
     font-size: 3;
@@ -18,7 +18,7 @@
   .mode-grid {
     display: flex;
     flex-direction: column;
-    gap: 1;
+    gap: 0.8;
   }
   .mode-row {
     display: flex;
@@ -29,7 +29,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1.2 2;
+    padding: 1 1.8;
     background-color: rgba(255, 68, 0, 0.15);
     border-color: #ff4400;
     border-width: 0.08;
@@ -41,29 +41,37 @@
     background-color: rgba(255, 68, 0, 0.35);
   }
   .mode-btn-name {
-    font-size: 1.8;
+    font-size: 1.6;
     color: #ff6633;
     font-weight: bold;
   }
   .mode-btn-desc {
-    font-size: 1;
+    font-size: 0.9;
     color: #aa6644;
   }
-  .locked-btn {
+  .tourn-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1.2 2;
-    background-color: rgba(80, 80, 80, 0.2);
-    border-color: #444444;
-    border-width: 0.08;
+    padding: 1 1.8;
+    background-color: rgba(255, 170, 0, 0.15);
+    border-color: #ffaa00;
+    border-width: 0.1;
     border-radius: 1;
-    min-width: 18;
     cursor: pointer;
+    min-width: 38;
   }
-  .locked-text {
-    font-size: 1.4;
-    color: #555555;
+  .tourn-btn:hover {
+    background-color: rgba(255, 170, 0, 0.3);
+  }
+  .tourn-btn-name {
+    font-size: 1.8;
+    color: #ffcc00;
+    font-weight: bold;
+  }
+  .tourn-btn-desc {
+    font-size: 0.9;
+    color: #aa8844;
   }
   .back-btn {
     display: flex;
@@ -109,12 +117,12 @@
     </div>
     <div class="mode-row">
       <div id="mode-speed" class="mode-btn" cursor="pointer">
-        <span id="mode-speed-name" class="mode-btn-name">🚀 SPEED RUSH</span>
-        <span id="mode-speed-desc" class="mode-btn-desc">30s, ever faster</span>
+        <span class="mode-btn-name">🚀 SPEED RUSH</span>
+        <span class="mode-btn-desc">30s, ever faster</span>
       </div>
       <div id="mode-pattern" class="mode-btn" cursor="pointer">
-        <span id="mode-pattern-name" class="mode-btn-name">🧠 PATTERN</span>
-        <span id="mode-pattern-desc" class="mode-btn-desc">Memorize the sequence</span>
+        <span class="mode-btn-name">🧠 PATTERN</span>
+        <span class="mode-btn-desc">Memorize the sequence</span>
       </div>
     </div>
     <div class="mode-row">
@@ -123,9 +131,13 @@
         <span class="mode-btn-desc">Today's challenge</span>
       </div>
       <div id="mode-frenzy" class="mode-btn" cursor="pointer">
-        <span id="mode-frenzy-name" class="mode-btn-name">🔥 FRENZY</span>
-        <span id="mode-frenzy-desc" class="mode-btn-desc">All holes, nonstop</span>
+        <span class="mode-btn-name">🔥 FRENZY</span>
+        <span class="mode-btn-desc">All holes, nonstop</span>
       </div>
+    </div>
+    <div id="mode-tournament" class="tourn-btn" cursor="pointer">
+      <span class="tourn-btn-name">🏟️ TOURNAMENT</span>
+      <span class="tourn-btn-desc">5 rounds of escalating difficulty</span>
     </div>
   </div>
   <div id="mode-back-btn" class="back-btn" cursor="pointer"><span class="back-text">← BACK</span></div>

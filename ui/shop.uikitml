@@ -8,7 +8,7 @@
     border-color: #ff4400;
     border-width: 0.12;
     border-radius: 2;
-    gap: 1;
+    gap: 0.8;
   }
   .shop-title {
     font-size: 3;
@@ -18,52 +18,28 @@
   .shop-grid {
     display: flex;
     flex-direction: column;
-    gap: 0.8;
+    gap: 0.6;
   }
   .shop-item {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 0.8 2;
+    padding: 0.6 2;
     background-color: rgba(255, 68, 0, 0.12);
     border-color: #442211;
     border-width: 0.06;
     border-radius: 0.8;
     gap: 1.5;
     cursor: pointer;
+    min-width: 30;
   }
   .shop-item:hover {
     background-color: rgba(255, 68, 0, 0.3);
   }
-  .shop-equipped {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0.8 2;
-    background-color: rgba(255, 170, 0, 0.2);
-    border-color: #ffaa00;
-    border-width: 0.08;
-    border-radius: 0.8;
-    gap: 1.5;
-  }
-  .shop-icon {
-    font-size: 2.5;
-    color: #ff6633;
-  }
   .shop-name {
-    font-size: 1.5;
+    font-size: 1.4;
     color: #ff6633;
     font-weight: bold;
-    min-width: 14;
-  }
-  .shop-req {
-    font-size: 1.1;
-    color: #aa8866;
-  }
-  .shop-locked {
-    font-size: 1.5;
-    color: #555555;
-    min-width: 14;
   }
   .back-btn {
     display: flex;
@@ -86,7 +62,15 @@
 </style>
 <div class="shop-panel">
   <span class="shop-title">🔨 MALLETS</span>
-  <div id="shop-list" class="shop-grid">
+  <div class="shop-grid">
+    <div id="mallet-0" class="shop-item" cursor="pointer"><span id="mallet-name-0" class="shop-name">🔨 STANDARD ★</span></div>
+    <div id="mallet-1" class="shop-item" cursor="pointer"><span id="mallet-name-1" class="shop-name">🔵 NEON BLUE</span></div>
+    <div id="mallet-2" class="shop-item" cursor="pointer"><span id="mallet-name-2" class="shop-name">💚 EMERALD</span></div>
+    <div id="mallet-3" class="shop-item" cursor="pointer"><span id="mallet-name-3" class="shop-name">⭐ GOLDEN</span></div>
+    <div id="mallet-4" class="shop-item" cursor="pointer"><span id="mallet-name-4" class="shop-name">🟣 VOID</span></div>
+    <div id="mallet-5" class="shop-item" cursor="pointer"><span id="mallet-name-5" class="shop-name">💖 PLASMA</span></div>
+    <div id="mallet-6" class="shop-item" cursor="pointer"><span id="mallet-name-6" class="shop-name">💎 DIAMOND</span></div>
+    <div id="mallet-7" class="shop-item" cursor="pointer"><span id="mallet-name-7" class="shop-name">🔥 INFERNO</span></div>
   </div>
   <div id="shop-back-btn" class="back-btn" cursor="pointer"><span class="back-text">← BACK</span></div>
 </div>

@@ -101,6 +101,7 @@
     <div class="stats-row"><span class="stats-label">Speed Rush</span><span id="stat-hs-speed" class="stats-value">0</span></div>
     <div class="stats-row"><span class="stats-label">Pattern</span><span id="stat-hs-pattern" class="stats-value">0</span></div>
     <div class="stats-row"><span class="stats-label">Frenzy</span><span id="stat-hs-frenzy" class="stats-value">0</span></div>
+    <div class="stats-row"><span class="stats-label">Tournament</span><span id="stat-hs-tournament" class="stats-value">0</span></div>
   </div>
   <div id="stats-back-btn" class="back-btn" cursor="pointer"><span class="back-text">← BACK</span></div>
 </div>
