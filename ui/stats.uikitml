@@ -91,6 +91,9 @@
     <div class="stats-row"><span class="stats-label">Total Misses</span><span id="stat-misses" class="stats-value">0</span></div>
     <div class="stats-row"><span class="stats-label">Overall Accuracy</span><span id="stat-accuracy" class="stats-value">0%</span></div>
     <div class="stats-row"><span class="stats-label">Best Combo</span><span id="stat-combo" class="stats-value">x0</span></div>
+    <div class="stats-row"><span class="stats-label">Best Streak</span><span id="stat-streak" class="stats-value">0</span></div>
+    <div class="stats-row"><span class="stats-label">Perfect Games</span><span id="stat-perfect" class="stats-value">0</span></div>
+    <div class="stats-row"><span class="stats-label">Modifier Games</span><span id="stat-modgames" class="stats-value">0</span></div>
     <div class="stats-row"><span class="stats-label">Time Played</span><span id="stat-time" class="stats-value">0m</span></div>
   </div>
   <span class="stats-section">HIGH SCORES</span>

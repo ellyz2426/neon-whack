@@ -47,6 +47,20 @@
     font-size: 1.5;
     color: #44ff44;
   }
+  .go-extra-row {
+    display: flex;
+    flex-direction: row;
+    gap: 3;
+  }
+  .go-mod-text {
+    font-size: 1.1;
+    color: #ff8844;
+  }
+  .go-streak-text {
+    font-size: 1.3;
+    color: #ffaa00;
+    font-weight: bold;
+  }
   .go-btn-row {
     display: flex;
     flex-direction: row;
@@ -105,6 +119,8 @@
     </div>
   </div>
   <span id="go-xp" class="go-xp-text"></span>
+  <span id="go-streak" class="go-streak-text"></span>
+  <span id="go-modifiers" class="go-mod-text"></span>
   <div class="go-btn-row">
     <div id="go-retry-btn" class="go-btn" cursor="pointer"><span class="go-btn-text">🔄 RETRY</span></div>
     <div id="go-menu-btn" class="go-btn" cursor="pointer"><span class="go-btn-text">🏠 MENU</span></div>

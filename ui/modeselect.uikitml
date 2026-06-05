@@ -73,6 +73,21 @@
     font-size: 0.9;
     color: #aa8844;
   }
+  .mod-link-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8 3;
+    background-color: rgba(255, 68, 0, 0.08);
+    border-color: #884422;
+    border-width: 0.08;
+    border-radius: 0.6;
+    cursor: pointer;
+  }
+  .mod-link-text {
+    font-size: 1.2;
+    color: #ff8844;
+  }
   .back-btn {
     display: flex;
     align-items: center;
@@ -139,6 +154,9 @@
       <span class="tourn-btn-name">🏟️ TOURNAMENT</span>
       <span class="tourn-btn-desc">5 rounds of escalating difficulty</span>
     </div>
+  </div>
+  <div id="mode-modifiers" class="mod-link-btn" cursor="pointer">
+    <span id="mod-indicator" class="mod-link-text">⚙️ MODIFIERS (0 active)</span>
   </div>
   <div id="mode-back-btn" class="back-btn" cursor="pointer"><span class="back-text">← BACK</span></div>
 </div>

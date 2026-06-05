@@ -1,0 +1,178 @@
+<style>
+  .mod-root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2;
+    background-color: rgba(0, 0, 0, 0.92);
+    border-color: #ff4400;
+    border-width: 0.12;
+    border-radius: 1.2;
+    gap: 1;
+  }
+  .mod-title {
+    font-size: 3;
+    color: #ff4400;
+    font-weight: bold;
+  }
+  .mod-subtitle {
+    font-size: 1.2;
+    color: #888888;
+  }
+  .mod-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6;
+    width: 100%;
+    padding: 0.5;
+  }
+  .mod-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.8;
+    padding: 0.6;
+    background-color: rgba(255, 68, 0, 0.08);
+    border-color: rgba(255, 68, 0, 0.2);
+    border-width: 0.06;
+    border-radius: 0.6;
+    cursor: pointer;
+  }
+  .mod-icon {
+    font-size: 2.2;
+    color: #ffffff;
+  }
+  .mod-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15;
+  }
+  .mod-name {
+    font-size: 1.4;
+    color: #ff8844;
+    font-weight: bold;
+  }
+  .mod-desc {
+    font-size: 1;
+    color: #777777;
+  }
+  .mod-mult {
+    font-size: 1.1;
+    color: #ffcc00;
+    font-weight: bold;
+  }
+  .mod-status {
+    font-size: 1.2;
+    color: #666666;
+  }
+  .mod-bottom {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5;
+    align-items: center;
+    padding: 0.5;
+  }
+  .mod-total {
+    font-size: 1.4;
+    color: #ffcc00;
+    font-weight: bold;
+  }
+  .mod-btn {
+    padding: 0.6;
+    padding-left: 2;
+    padding-right: 2;
+    background-color: rgba(255, 68, 0, 0.3);
+    border-color: #ff4400;
+    border-width: 0.08;
+    border-radius: 0.5;
+    cursor: pointer;
+  }
+  .mod-btn-text {
+    font-size: 1.5;
+    color: #ff4400;
+    font-weight: bold;
+  }
+  .mod-back-btn {
+    padding: 0.5;
+    padding-left: 1.5;
+    padding-right: 1.5;
+    background-color: rgba(100, 100, 100, 0.2);
+    border-color: #666666;
+    border-width: 0.06;
+    border-radius: 0.5;
+    cursor: pointer;
+  }
+  .mod-back-text {
+    font-size: 1.2;
+    color: #888888;
+  }
+</style>
+<div class="mod-root">
+  <span class="mod-title">⚙️ MODIFIERS</span>
+  <span class="mod-subtitle">Toggle challenge modifiers for bonus score multiplier</span>
+  <div class="mod-list">
+    <div id="mod-0" class="mod-row" cursor="pointer">
+      <span id="mod-icon-0" class="mod-icon">💀</span>
+      <div class="mod-info">
+        <span id="mod-name-0" class="mod-name">HARD MODE</span>
+        <span id="mod-desc-0" class="mod-desc">Targets stay 40% less time</span>
+      </div>
+      <span id="mod-mult-0" class="mod-mult">×1.5</span>
+      <span id="mod-status-0" class="mod-status">OFF</span>
+    </div>
+    <div id="mod-1" class="mod-row" cursor="pointer">
+      <span id="mod-icon-1" class="mod-icon">🔬</span>
+      <div class="mod-info">
+        <span id="mod-name-1" class="mod-name">TINY TARGETS</span>
+        <span id="mod-desc-1" class="mod-desc">Targets are 60% smaller</span>
+      </div>
+      <span id="mod-mult-1" class="mod-mult">×1.75</span>
+      <span id="mod-status-1" class="mod-status">OFF</span>
+    </div>
+    <div id="mod-2" class="mod-row" cursor="pointer">
+      <span id="mod-icon-2" class="mod-icon">🚫</span>
+      <div class="mod-info">
+        <span id="mod-name-2" class="mod-name">NO POWER-UPS</span>
+        <span id="mod-desc-2" class="mod-desc">Power-ups disabled</span>
+      </div>
+      <span id="mod-mult-2" class="mod-mult">×1.25</span>
+      <span id="mod-status-2" class="mod-status">OFF</span>
+    </div>
+    <div id="mod-3" class="mod-row" cursor="pointer">
+      <span id="mod-icon-3" class="mod-icon">💣</span>
+      <div class="mod-info">
+        <span id="mod-name-3" class="mod-name">BOMB RUSH</span>
+        <span id="mod-desc-3" class="mod-desc">3× more bombs spawn</span>
+      </div>
+      <span id="mod-mult-3" class="mod-mult">×1.5</span>
+      <span id="mod-status-3" class="mod-status">OFF</span>
+    </div>
+    <div id="mod-4" class="mod-row" cursor="pointer">
+      <span id="mod-icon-4" class="mod-icon">👻</span>
+      <div class="mod-info">
+        <span id="mod-name-4" class="mod-name">GHOST MODE</span>
+        <span id="mod-desc-4" class="mod-desc">All targets flicker like ghosts</span>
+      </div>
+      <span id="mod-mult-4" class="mod-mult">×1.5</span>
+      <span id="mod-status-4" class="mod-status">OFF</span>
+    </div>
+    <div id="mod-5" class="mod-row" cursor="pointer">
+      <span id="mod-icon-5" class="mod-icon">⚡</span>
+      <div class="mod-info">
+        <span id="mod-name-5" class="mod-name">SPEED DEMON</span>
+        <span id="mod-desc-5" class="mod-desc">2× spawn rate</span>
+      </div>
+      <span id="mod-mult-5" class="mod-mult">×1.25</span>
+      <span id="mod-status-5" class="mod-status">OFF</span>
+    </div>
+  </div>
+  <span id="mod-total-text" class="mod-total">TOTAL MULTIPLIER: ×1.00</span>
+  <div class="mod-bottom">
+    <div id="mod-back" class="mod-back-btn" cursor="pointer">
+      <span class="mod-back-text">◀ BACK</span>
+    </div>
+    <div id="mod-start" class="mod-btn" cursor="pointer">
+      <span class="mod-btn-text">START ▶</span>
+    </div>
+  </div>
+</div>

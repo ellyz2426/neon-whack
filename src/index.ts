@@ -15,7 +15,7 @@ import {
 
 type GameState = 'title' | 'modeselect' | 'countdown' | 'playing' | 'pattern_show' |
   'pattern_input' | 'gameover' | 'pause' | 'achievements' | 'settings' | 'help' |
-  'stats' | 'shop' | 'tutorial' | 'tournament_transition';
+  'stats' | 'shop' | 'tutorial' | 'tournament_transition' | 'modifiers';
 
 type GameMode = 'classic' | 'survival' | 'timeattack' | 'zen' | 'speed' | 'pattern' |
   'daily' | 'frenzy' | 'tournament';
@@ -94,7 +94,25 @@ interface SaveData {
   totalBombsHit: number; totalKingsHit: number; totalGhostsHit: number;
   totalMysteryHit: number; totalPowerUps: number; totalDailies: number;
   tournamentBest: number;
+  bestStreak: number; perfectRounds: number;
+  totalModifierGames: number;
 }
+
+// ─── Challenge Modifiers ────────────────────────────────────
+
+interface Modifier {
+  id: string; name: string; desc: string; icon: string;
+  scoreMultiplier: number;
+}
+
+const MODIFIERS: Modifier[] = [
+  { id: 'hardmode', name: 'HARD MODE', desc: 'Targets stay 40% less time', icon: '💀', scoreMultiplier: 1.5 },
+  { id: 'tinyTargets', name: 'TINY TARGETS', desc: 'Targets are 60% smaller', icon: '🔬', scoreMultiplier: 1.75 },
+  { id: 'nopower', name: 'NO POWER-UPS', desc: 'Power-ups disabled', icon: '🚫', scoreMultiplier: 1.25 },
+  { id: 'bombRush', name: 'BOMB RUSH', desc: '3× more bombs spawn', icon: '💣', scoreMultiplier: 1.5 },
+  { id: 'ghostMode', name: 'GHOST MODE', desc: 'All targets flicker like ghosts', icon: '👻', scoreMultiplier: 1.5 },
+  { id: 'speedDemon', name: 'SPEED DEMON', desc: '2× spawn rate', icon: '⚡', scoreMultiplier: 1.25 },
+];
 
 // ─── Audio Engine ────────────────────────────────────────────────
 
@@ -344,6 +362,7 @@ async function main() {
     highScores: {}, achievements: [], tutorialDone: false,
     totalBombsHit: 0, totalKingsHit: 0, totalGhostsHit: 0,
     totalMysteryHit: 0, totalPowerUps: 0, totalDailies: 0, tournamentBest: 0,
+    bestStreak: 0, perfectRounds: 0, totalModifierGames: 0,
   };
 
   function loadSave(): SaveData {
@@ -413,6 +432,20 @@ async function main() {
   // Session trackers
   let sessionBombsHit = 0, sessionKingsHit = 0, sessionGhostsHit = 0;
   let sessionMysteryHit = 0, sessionPowerUps = 0;
+
+  // Streak tracking (consecutive hits without a miss)
+  let streak = 0, bestSessionStreak = 0;
+
+  // Active modifiers
+  let activeModifiers: Set<string> = new Set();
+  function getModifierMultiplier(): number {
+    let m = 1;
+    activeModifiers.forEach(id => {
+      const mod = MODIFIERS.find(x => x.id === id);
+      if (mod) m *= mod.scoreMultiplier;
+    });
+    return m;
+  }
 
   // Daily seed
   const today = new Date();
@@ -486,6 +519,80 @@ async function main() {
   createWall(12, 6, 0, 3, -5, 0);
   createWall(12, 6, -6, 3, -2, Math.PI / 2);
   createWall(12, 6, 6, 3, -2, -Math.PI / 2);
+
+  // ─── Arena Decorations ───────────────────────────────────
+
+  // Corner pillars with glowing edges
+  const pillarPositions = [
+    [-5.5, 0, -4.5], [5.5, 0, -4.5], [-5.5, 0, 0.5], [5.5, 0, 0.5],
+  ];
+  const pillarMeshes: Mesh[] = [];
+  pillarPositions.forEach(([px, _py, pz]) => {
+    const pillar = new Mesh(
+      new BoxGeometry(0.15, 5, 0.15),
+      new MeshStandardMaterial({
+        color: new Color('#111133'),
+        emissive: new Color(currentTheme.glow),
+        emissiveIntensity: 0.15,
+      })
+    );
+    pillar.position.set(px, 2.5, pz);
+    scene.add(pillar);
+    pillarMeshes.push(pillar);
+
+    // Glowing top cap
+    const cap = new Mesh(
+      new SphereGeometry(0.12, 8, 6),
+      new MeshBasicMaterial({
+        color: new Color(currentTheme.accent),
+        transparent: true, opacity: 0.5, blending: AdditiveBlending,
+      })
+    );
+    cap.position.set(px, 5.1, pz);
+    scene.add(cap);
+  });
+
+  // Floating energy orbs that slowly orbit the arena
+  interface EnergyOrb {
+    mesh: Mesh; glow: Mesh; angle: number; radius: number; speed: number; height: number;
+  }
+  const energyOrbs: EnergyOrb[] = [];
+  for (let i = 0; i < 6; i++) {
+    const angle = (i / 6) * Math.PI * 2;
+    const radius = 3.5 + Math.random() * 1.5;
+    const height = 2.5 + Math.random() * 2;
+    const orb = new Mesh(
+      new SphereGeometry(0.06, 8, 6),
+      new MeshBasicMaterial({
+        color: new Color(currentTheme.accent),
+        transparent: true, opacity: 0.7,
+      })
+    );
+    orb.position.set(Math.cos(angle) * radius, height, -2 + Math.sin(angle) * radius);
+    scene.add(orb);
+
+    const glow = new Mesh(
+      new SphereGeometry(0.15, 8, 6),
+      new MeshBasicMaterial({
+        color: new Color(currentTheme.glow),
+        transparent: true, opacity: 0.2, blending: AdditiveBlending,
+      })
+    );
+    glow.position.copy(orb.position);
+    scene.add(glow);
+
+    energyOrbs.push({ mesh: orb, glow, angle, radius, speed: 0.15 + Math.random() * 0.1, height });
+  }
+
+  // Ceiling grid with faint lines
+  const ceilingY = 5.5;
+  for (let i = -5; i <= 5; i += 2) {
+    const mat = new LineBasicMaterial({ color: new Color(currentTheme.grid), transparent: true, opacity: 0.06 });
+    const g1 = new BufferGeometry().setFromPoints([new Vector3(i, ceilingY, -6), new Vector3(i, ceilingY, 2)]);
+    scene.add(new Line(g1, mat));
+    const g2 = new BufferGeometry().setFromPoints([new Vector3(-6, ceilingY, i - 2), new Vector3(6, ceilingY, i - 2)]);
+    scene.add(new Line(g2, mat));
+  }
 
   function applyTheme(theme: Theme) {
     currentTheme = theme;
@@ -704,6 +811,104 @@ async function main() {
     }
   }
 
+  // Ring burst VFX — expanding ring at hit point
+  interface RingBurst {
+    mesh: Mesh; life: number; maxLife: number; speed: number;
+  }
+  const ringBursts: RingBurst[] = [];
+
+  function spawnRingBurst(x: number, y: number, z: number, color: string) {
+    const mesh = new Mesh(
+      new TorusGeometry(0.05, 0.015, 6, 24),
+      new MeshBasicMaterial({ color: new Color(color), transparent: true, opacity: 0.8, blending: AdditiveBlending })
+    );
+    mesh.position.set(x, y, z);
+    mesh.rotation.x = -Math.PI / 2;
+    scene.add(mesh);
+    ringBursts.push({ mesh, life: 0.5, maxLife: 0.5, speed: 3 });
+  }
+
+  function updateRingBursts(dt: number) {
+    for (let i = ringBursts.length - 1; i >= 0; i--) {
+      const rb = ringBursts[i];
+      rb.life -= dt;
+      if (rb.life <= 0) { scene.remove(rb.mesh); ringBursts.splice(i, 1); continue; }
+      const progress = 1 - rb.life / rb.maxLife;
+      const scale = 1 + progress * rb.speed;
+      rb.mesh.scale.set(scale, scale, scale);
+      (rb.mesh.material as MeshBasicMaterial).opacity = 0.8 * (rb.life / rb.maxLife);
+    }
+  }
+
+  // ─── Screen Flash System ─────────────────────────────────────
+
+  const flashPlane = new Mesh(
+    new PlaneGeometry(20, 20),
+    new MeshBasicMaterial({
+      color: new Color('#ffffff'),
+      transparent: true, opacity: 0, blending: AdditiveBlending, side: DoubleSide,
+      depthWrite: false,
+    })
+  );
+  flashPlane.position.set(0, 1.7, -0.8);
+  flashPlane.renderOrder = 999;
+  scene.add(flashPlane);
+  let flashTimer = 0;
+  let flashDuration = 0;
+
+  function triggerFlash(color: string, duration = 0.15) {
+    (flashPlane.material as MeshBasicMaterial).color.set(color);
+    (flashPlane.material as MeshBasicMaterial).opacity = 0.25;
+    flashTimer = duration;
+    flashDuration = duration;
+  }
+
+  function updateFlash(dt: number) {
+    if (flashTimer > 0) {
+      flashTimer -= dt;
+      const frac = Math.max(0, flashTimer / flashDuration);
+      (flashPlane.material as MeshBasicMaterial).opacity = 0.25 * frac;
+    }
+  }
+
+  // ─── Floor Beat Pulse ────────────────────────────────────────
+
+  let beatPhase = 0;
+  const floorPulseMat = new MeshBasicMaterial({
+    color: new Color(currentTheme.glow),
+    transparent: true, opacity: 0, blending: AdditiveBlending, depthWrite: false,
+  });
+  const floorPulse = new Mesh(new PlaneGeometry(8, 8), floorPulseMat);
+  floorPulse.rotation.x = -Math.PI / 2;
+  floorPulse.position.set(0, 0.008, -2);
+  scene.add(floorPulse);
+
+  function updateFloorPulse(dt: number) {
+    beatPhase += dt * (128 / 60); // sync to 128 BPM
+    const pulse = Math.max(0, Math.sin(beatPhase * Math.PI * 2) * 0.5);
+    const isPlaying = state === 'playing' || state === 'pattern_input';
+    floorPulseMat.opacity = isPlaying ? pulse * 0.04 : 0;
+    floorPulseMat.color.set(currentTheme.glow);
+  }
+
+  // ─── Streak Milestone VFX ────────────────────────────────────
+
+  function spawnStreakBurst(milestone: number) {
+    // Spawn a ring of particles around the play area
+    const count = Math.min(milestone, 30);
+    const color = milestone >= 50 ? '#ffd700' : milestone >= 20 ? '#ff4400' : '#00ffff';
+    for (let i = 0; i < count; i++) {
+      const angle = (i / count) * Math.PI * 2;
+      const radius = 2.5;
+      const x = Math.cos(angle) * radius;
+      const z = -2 + Math.sin(angle) * radius;
+      spawnParticles(x, 0.5, z, color, 3);
+    }
+    // Flash
+    triggerFlash(color, 0.2);
+    triggerShake(0.3, 0.15);
+  }
+
   function updateParticles(dt: number) {
     for (let i = particles.length - 1; i >= 0; i--) {
       const p = particles[i];
@@ -800,13 +1005,17 @@ async function main() {
 
     scene.add(mesh); scene.add(glow); scene.add(edges);
 
-    const sizeMultiplier = activePowerUp?.type === 'sizeup' ? 1.4 : 1;
+    const sizeMultiplier = (activePowerUp?.type === 'sizeup' ? 1.4 : 1) *
+      (activeModifiers.has('tinyTargets') ? 0.6 : 1);
     mesh.scale.setScalar(sizeMultiplier);
+
+    const stayMult = (activePowerUp?.type === 'timeslow' ? 1.8 : 1) *
+      (activePowerUp?.type === 'freeze' ? 2.5 : 1) *
+      (activeModifiers.has('hardmode') ? 0.6 : 1);
 
     activeTargets.push({
       holeIdx, typeIdx, mesh, cap, glow, edges,
-      timeLeft: ttype.stayTime * (activePowerUp?.type === 'timeslow' ? 1.8 : 1) *
-        (activePowerUp?.type === 'freeze' ? 2.5 : 1),
+      timeLeft: ttype.stayTime * stayMult,
       hitsLeft: ttype.hitsNeeded,
       rising: true, riseT: 0, sinking: false, sinkT: 0,
       alive: true, ghostPhase: Math.random() * Math.PI * 2,
@@ -850,8 +1059,10 @@ async function main() {
       spawnParticles(t.mesh.position.x, t.mesh.position.y + 0.15, t.mesh.position.z, '#ff2200', 15);
       score += ttype.points;
       combo = 0;
+      streak = 0;
       sessionBombsHit++;
       triggerShake(1.0, 0.3);
+      triggerFlash('#ff2200', 0.25);
       if (mode === 'survival' || mode === 'frenzy' || mode === 'tournament') { lives--; }
       removeTarget(t);
       return;
@@ -866,7 +1077,7 @@ async function main() {
     if (ttype.name === 'MYSTERY') {
       const options = [50, 100, 200, 300, 500, 1000];
       pts = options[Math.floor(Math.random() * options.length)];
-      if (Math.random() < 0.3) {
+      if (Math.random() < 0.3 && !activeModifiers.has('nopower')) {
         const types: PowerUpState['type'][] = ['timeslow', 'sizeup', 'scorex2', 'magnet', 'freeze'];
         const names = ['⏳ TIME SLOW', '🔍 SIZE UP', '⭐ SCORE ×2', '🧲 MAGNET', '❄️ FREEZE'];
         const idx = Math.floor(Math.random() * types.length);
@@ -877,27 +1088,41 @@ async function main() {
       }
     }
 
-    const multiplier = (activePowerUp?.type === 'scorex2' ? 2 : 1);
+    const multiplier = (activePowerUp?.type === 'scorex2' ? 2 : 1) * getModifierMultiplier();
     combo++;
     if (combo > bestCombo) bestCombo = combo;
+    streak++;
+    if (streak > bestSessionStreak) bestSessionStreak = streak;
     const comboMult = 1 + Math.min(combo - 1, 9) * 0.1;
-    const finalPts = Math.round(pts * comboMult * multiplier);
+    // Streak bonus: every 10 consecutive hits without a miss
+    const streakBonus = streak > 0 && streak % 10 === 0 ? 500 * Math.floor(streak / 10) : 0;
+    const finalPts = Math.round(pts * comboMult * multiplier) + streakBonus;
     score += finalPts;
     hits++;
+
+    if (streakBonus > 0) {
+      showToast(`🔥 ${streak} STREAK!`, `+${streakBonus} bonus`);
+      spawnStreakBurst(streak);
+    }
 
     audio.playWhack(1.0 + Math.min(combo, 10) * 0.05);
     if (combo >= 3) audio.playCombo(combo);
 
+    // Screen flash on high-value hits
+    if (finalPts >= 1000) triggerFlash('#ffd700', 0.12);
+    else if (finalPts >= 500) triggerFlash(ttype.color, 0.08);
+
     // Spawn visual effects
     spawnParticles(t.mesh.position.x, t.mesh.position.y + 0.15, t.mesh.position.z, ttype.color, 10);
     spawnScorePopup(t.mesh.position.x, t.mesh.position.y, t.mesh.position.z, ttype.color, finalPts >= 500);
+    spawnRingBurst(t.mesh.position.x, t.mesh.position.y, t.mesh.position.z, ttype.color);
 
     if (combo >= 3) showCombo(`x${combo}`);
 
     removeTarget(t);
 
     // Power-up drop
-    if (Math.random() < 0.05 && !activePowerUp && ttype.name !== 'MYSTERY') {
+    if (Math.random() < 0.05 && !activePowerUp && ttype.name !== 'MYSTERY' && !activeModifiers.has('nopower')) {
       const types: PowerUpState['type'][] = ['timeslow', 'sizeup', 'scorex2', 'magnet', 'freeze'];
       const names = ['⏳ TIME SLOW', '🔍 SIZE UP', '⭐ SCORE ×2', '🧲 MAGNET', '❄️ FREEZE'];
       const idx = Math.floor(Math.random() * types.length);
@@ -911,6 +1136,7 @@ async function main() {
   function onTargetMissed(t: ActiveTarget) {
     if (TARGET_TYPES[t.typeIdx].isBomb) return;
     combo = 0;
+    streak = 0;
     misses++;
     if (mode === 'survival' || mode === 'tournament') { lives--; }
     removeTarget(t);
@@ -927,6 +1153,8 @@ async function main() {
     base[4] += diff * 0.3;
     base[5] += diff * 0.5;
     base[6] += diff * 0.1;
+    // Bomb Rush modifier: triple bomb weight
+    if (activeModifiers.has('bombRush')) base[4] *= 3;
     return base;
   }
 
@@ -952,7 +1180,7 @@ async function main() {
                  mode === 'zen' ? 2.0 :
                  mode === 'tournament' ? Math.max(0.5, 1.3 - tournamentRound * 0.15 - difficultyLevel * 0.05) :
                  Math.max(0.5, 1.5 - difficultyLevel * 0.08);
-    return base;
+    return base * (activeModifiers.has('speedDemon') ? 0.5 : 1);
   }
 
   function updateDifficulty() {
@@ -1007,10 +1235,13 @@ async function main() {
   const toastEntity = createHUD('/ui/toast.json', 0, -0.1, -0.5, 0.3, 0.06);
   const powerupEntity = createHUD('/ui/powerup.json', -0.2, 0.15, -0.5, 0.2, 0.04);
 
+  const modifiersEntity = createPanel('/ui/modifiers.json', 0, 1.5, -3, 1.0, 1.6);
+
   const allPanels = [
     titleEntity, modeEntity, countdownEntity, gameoverEntity, pauseEntity,
     settingsEntity, achieveEntity, statsEntity, helpEntity, shopEntity, patternEntity,
     hudEntity, comboEntity, toastEntity, powerupEntity, tutorialEntity, tournamentEntity,
+    modifiersEntity,
   ];
 
   const HIDDEN_Y = -100;
@@ -1152,6 +1383,18 @@ async function main() {
     { id: 'daily_10', name: 'Daily Devotee', desc: 'Play 10 dailies', icon: '📅', check: () => save.totalDailies >= 10 },
     // Mallets
     { id: 'all_mallets', name: 'Collector', desc: 'Unlock all mallet skins', icon: '🔨', check: () => save.level >= 50 },
+    // Streak
+    { id: 'streak_10', name: 'Streak Starter', desc: '10 consecutive hits', icon: '🔥', check: () => save.bestStreak >= 10 },
+    { id: 'streak_25', name: 'Streak Pro', desc: '25 consecutive hits', icon: '🔥', check: () => save.bestStreak >= 25 },
+    { id: 'streak_50', name: 'Streak Master', desc: '50 consecutive hits', icon: '💥', check: () => save.bestStreak >= 50 },
+    { id: 'streak_100', name: 'Unstoppable', desc: '100 consecutive hits', icon: '🌟', check: () => save.bestStreak >= 100 },
+    // Modifier games
+    { id: 'modifier_1', name: 'Modifier Curious', desc: 'Play with 1 modifier', icon: '⚙️', check: () => save.totalModifierGames >= 1 },
+    { id: 'modifier_5', name: 'Modifier Fan', desc: 'Play 5 modified games', icon: '⚙️', check: () => save.totalModifierGames >= 5 },
+    { id: 'modifier_all', name: 'All Modifiers', desc: 'Play with all 6 active', icon: '🔧', check: () => false },
+    // Perfect rounds (checked at session end)
+    { id: 'perfect_10', name: 'Perfect 10', desc: '10 hits, 0 misses', icon: '💎', check: () => save.perfectRounds >= 1 },
+    { id: 'perfect_5_games', name: 'Perfectionist', desc: '5 perfect games', icon: '💎', check: () => save.perfectRounds >= 5 },
   ];
 
   function checkAchievements() {
@@ -1191,6 +1434,16 @@ async function main() {
     if (mode === 'classic' && misses === 0 && hits >= 10 && !save.achievements.includes('perfect_classic')) {
       save.achievements.push('perfect_classic');
       showToast('🏆 Perfect Classic', '0 misses!');
+      audio.playAchievement();
+    }
+    // Perfect round (10+ hits, 0 misses in any mode)
+    if (hits >= 10 && misses === 0) {
+      save.perfectRounds++;
+    }
+    // All modifiers active
+    if (activeModifiers.size >= MODIFIERS.length && !save.achievements.includes('modifier_all')) {
+      save.achievements.push('modifier_all');
+      showToast('🏆 All Modifiers', 'All 6 modifiers active!');
       audio.playAchievement();
     }
     writeSave(save);
@@ -1234,6 +1487,7 @@ async function main() {
     bindBtn(modeEntity, 'mode-daily', () => { save.totalDailies++; writeSave(save); startGame('daily'); });
     bindBtn(modeEntity, 'mode-frenzy', () => startGame('frenzy'));
     bindBtn(modeEntity, 'mode-tournament', () => startGame('tournament'));
+    bindBtn(modeEntity, 'mode-modifiers', () => { prevState = 'modeselect'; switchState('modifiers'); });
     bindBtn(modeEntity, 'mode-back-btn', () => switchState('title'));
 
     // Game over
@@ -1293,6 +1547,18 @@ async function main() {
       startTournamentRound();
     });
 
+    // Modifiers
+    MODIFIERS.forEach((_mod, i) => {
+      bindBtn(modifiersEntity, `mod-${i}`, () => {
+        const modId = MODIFIERS[i].id;
+        if (activeModifiers.has(modId)) activeModifiers.delete(modId);
+        else activeModifiers.add(modId);
+        updateModifiersUI();
+      });
+    });
+    bindBtn(modifiersEntity, 'mod-back', () => switchState(prevState));
+    bindBtn(modifiersEntity, 'mod-start', () => switchState('modeselect'));
+
     uiBound = true;
   }
 
@@ -1313,6 +1579,9 @@ async function main() {
         break;
       case 'modeselect':
         showPanel(modeEntity);
+        updateEl(modeEntity, 'mod-indicator', activeModifiers.size > 0
+          ? `⚙️ MODIFIERS (${activeModifiers.size} active — ×${getModifierMultiplier().toFixed(2)})`
+          : '⚙️ MODIFIERS (0 active)');
         break;
       case 'countdown':
         showPanel(countdownEntity, 1.8);
@@ -1373,6 +1642,10 @@ async function main() {
         showPanel(shopEntity);
         updateShopUI();
         break;
+      case 'modifiers':
+        showPanel(modifiersEntity);
+        updateModifiersUI();
+        break;
     }
   }
 
@@ -1385,6 +1658,7 @@ async function main() {
     activePowerUp = null;
     sessionBombsHit = 0; sessionKingsHit = 0; sessionGhostsHit = 0;
     sessionMysteryHit = 0; sessionPowerUps = 0;
+    streak = 0; bestSessionStreak = 0;
     clearAllTargets();
 
     if (m === 'daily') dailyRng = dailySeed;
@@ -1516,11 +1790,30 @@ async function main() {
 
     // XP
     const xpEarned = Math.round(hits * 5 + bestCombo * 2 + (mode === 'pattern' ? patternRound * 10 : 0) +
-      (mode === 'tournament' ? (tournamentRound + 1) * 15 : 0));
+      (mode === 'tournament' ? (tournamentRound + 1) * 15 : 0) +
+      bestSessionStreak * 1.5 + (activeModifiers.size > 0 ? 20 : 0));
     const leveled = addXP(xpEarned);
     let xpText = `+${xpEarned} XP`;
     if (leveled > 0) { xpText += ` — LEVEL UP! (Lv ${save.level})`; audio.playLevelUp(); }
     updateEl(gameoverEntity, 'go-xp', xpText);
+
+    // Streak display
+    if (bestSessionStreak >= 5) {
+      updateEl(gameoverEntity, 'go-streak', `🔥 Best Streak: ${bestSessionStreak} consecutive`);
+    } else {
+      updateEl(gameoverEntity, 'go-streak', '');
+    }
+
+    // Modifier display
+    if (activeModifiers.size > 0) {
+      const modNames = Array.from(activeModifiers).map(id => {
+        const m = MODIFIERS.find(x => x.id === id);
+        return m ? m.icon + ' ' + m.name : id;
+      }).join(', ');
+      updateEl(gameoverEntity, 'go-modifiers', `Modifiers: ${modNames} (×${getModifierMultiplier().toFixed(2)})`);
+    } else {
+      updateEl(gameoverEntity, 'go-modifiers', '');
+    }
 
     // Career stats
     save.totalGames++; save.totalWhacks += hits; save.totalMisses += misses;
@@ -1528,6 +1821,8 @@ async function main() {
     save.totalGhostsHit += sessionGhostsHit; save.totalMysteryHit += sessionMysteryHit;
     save.totalPowerUps += sessionPowerUps;
     if (bestCombo > save.bestCombo) save.bestCombo = bestCombo;
+    if (bestSessionStreak > save.bestStreak) save.bestStreak = bestSessionStreak;
+    if (activeModifiers.size > 0) save.totalModifierGames++;
     save.totalTimePlayed += Math.round(gameTime);
     writeSave(save);
 
@@ -1570,6 +1865,9 @@ async function main() {
       Math.round(save.totalWhacks / (save.totalWhacks + save.totalMisses) * 100) : 0;
     updateEl(statsEntity, 'stat-accuracy', `${totalAcc}%`);
     updateEl(statsEntity, 'stat-combo', `x${save.bestCombo}`);
+    updateEl(statsEntity, 'stat-streak', `${save.bestStreak}`);
+    updateEl(statsEntity, 'stat-perfect', `${save.perfectRounds}`);
+    updateEl(statsEntity, 'stat-modgames', `${save.totalModifierGames}`);
     const mins = Math.round(save.totalTimePlayed / 60);
     updateEl(statsEntity, 'stat-time', mins >= 60 ? `${Math.floor(mins / 60)}h ${mins % 60}m` : `${mins}m`);
     updateEl(statsEntity, 'stat-hs-classic', `${save.highScores['classic'] || 0}`);
@@ -1599,6 +1897,19 @@ async function main() {
     tournamentTotalScore += score;
     updateEl(tournamentEntity, 'tourn-total', `Total: ${tournamentTotalScore.toLocaleString()}`);
     updateEl(tournamentEntity, 'tourn-next', `Next: Round ${tournamentRound + 2} of ${TOURNAMENT_ROUNDS}`);
+  }
+
+  function updateModifiersUI() {
+    MODIFIERS.forEach((mod, i) => {
+      const isOn = activeModifiers.has(mod.id);
+      updateEl(modifiersEntity, `mod-status-${i}`, isOn ? '✅ ON' : 'OFF');
+      updateEl(modifiersEntity, `mod-name-${i}`, mod.name);
+      updateEl(modifiersEntity, `mod-desc-${i}`, mod.desc);
+      updateEl(modifiersEntity, `mod-icon-${i}`, mod.icon);
+      updateEl(modifiersEntity, `mod-mult-${i}`, `×${mod.scoreMultiplier}`);
+    });
+    const totalMult = getModifierMultiplier();
+    updateEl(modifiersEntity, 'mod-total-text', `TOTAL MULTIPLIER: ×${totalMult.toFixed(2)}`);
   }
 
   // ─── Pattern Mode Logic ─────────────────────────────────────
@@ -1720,8 +2031,71 @@ async function main() {
     }
   }
 
-  function onControllerSelect(_hand: 'left' | 'right') {
+  function onControllerSelect(hand: 'left' | 'right') {
     if (state !== 'playing' && state !== 'pattern_input') return;
+
+    // Get controller ray from XR input
+    const xrInput = (world.input as any).xr;
+    if (!xrInput) return;
+
+    // Use the player space entities for ray origin/direction
+    const raySpaces = (world as any).playerSpaceEntities?.raySpaces;
+    const raySpace = hand === 'right' ? raySpaces?.right : raySpaces?.left;
+    let origin: Vector3;
+    let direction: Vector3;
+
+    if (raySpace?.object3D) {
+      origin = new Vector3();
+      direction = new Vector3(0, 0, -1);
+      raySpace.object3D.getWorldPosition(origin);
+      raySpace.object3D.getWorldDirection(direction);
+      direction.negate(); // forward is -Z
+    } else {
+      // Fallback: use controller grip space or headset forward
+      const gripSpaces = (world as any).playerSpaceEntities?.gripSpaces;
+      const grip = hand === 'right' ? gripSpaces?.right : gripSpaces?.left;
+      if (grip?.object3D) {
+        origin = new Vector3();
+        direction = new Vector3(0, 0, -1);
+        grip.object3D.getWorldPosition(origin);
+        grip.object3D.getWorldDirection(direction);
+        direction.negate();
+      } else {
+        // Last fallback: head position aiming forward
+        const cam = world.camera;
+        if (!cam) return;
+        origin = new Vector3().copy(cam.position);
+        direction = new Vector3(0, 0, -1).applyQuaternion(cam.quaternion);
+      }
+    }
+
+    // Raycast against targets using sphere intersection
+    let closestDist = Infinity;
+    let closestTarget: ActiveTarget | null = null;
+
+    for (const t of activeTargets) {
+      if (!t.alive || t.sinking) continue;
+      const tPos = t.mesh.position;
+      const oc = new Vector3().subVectors(origin, tPos);
+      const radius = 0.2 * (activePowerUp?.type === 'sizeup' ? 1.4 : 1) *
+        (activeModifiers.has('tinyTargets') ? 0.6 : 1);
+      const a = direction.dot(direction);
+      const b = 2 * oc.dot(direction);
+      const c2 = oc.dot(oc) - radius * radius;
+      const disc = b * b - 4 * a * c2;
+      if (disc < 0) continue;
+      const dist = (-b - Math.sqrt(disc)) / (2 * a);
+      if (dist > 0 && dist < closestDist) {
+        closestDist = dist; closestTarget = t;
+      }
+    }
+
+    if (closestTarget) {
+      if (state === 'pattern_input') handlePatternInput(closestTarget.holeIdx);
+      else hitTarget(closestTarget);
+    }
+
+    triggerMalletSwing();
   }
 
   // ─── Update Loop ─────────────────────────────────────────────
@@ -1756,6 +2130,22 @@ async function main() {
     updateParticles(dt);
     updateShake(dt);
     updateMallet(dt);
+    updateRingBursts(dt);
+    updateFlash(dt);
+    updateFloorPulse(dt);
+
+    // Animate energy orbs
+    const tNow = performance.now() / 1000;
+    energyOrbs.forEach(orb => {
+      orb.angle += orb.speed * dt;
+      const x = Math.cos(orb.angle) * orb.radius;
+      const z = -2 + Math.sin(orb.angle) * orb.radius;
+      const bobY = orb.height + Math.sin(tNow * 0.8 + orb.angle) * 0.3;
+      orb.mesh.position.set(x, bobY, z);
+      orb.glow.position.copy(orb.mesh.position);
+      const pulse = 0.15 + Math.sin(tNow * 2 + orb.angle * 3) * 0.08;
+      (orb.glow.material as MeshBasicMaterial).opacity = pulse;
+    });
 
     // Combo timer
     if (comboTimer > 0) {
@@ -1875,11 +2265,17 @@ async function main() {
           } else if (at.alive) {
             at.timeLeft -= dt;
 
-            // Ghost flickering
-            if (TARGET_TYPES[at.typeIdx].isGhost) {
+            // Magnet power-up: targets stay longer when active
+            if (activePowerUp?.type === 'magnet' && at.timeLeft < 0.5 && at.timeLeft > 0) {
+              at.timeLeft += dt * 0.8; // slow decay when magnet active
+            }
+
+            // Ghost flickering (or ghostMode modifier)
+            if (TARGET_TYPES[at.typeIdx].isGhost || activeModifiers.has('ghostMode')) {
               at.ghostPhase += dt * 6;
               const opacity = 0.3 + Math.sin(at.ghostPhase) * 0.3;
               (at.mesh.material as MeshStandardMaterial).opacity = opacity;
+              (at.mesh.material as MeshStandardMaterial).transparent = true;
             }
 
             // Bob
