@@ -1,0 +1,13 @@
+{
+  "game": "neon-whack",
+  "build_number": 31,
+  "date": "2026-06-05",
+  "cycle": "AM",
+  "status": "complete",
+  "rounds": 3,
+  "total_minutes": 105,
+  "files": 19,
+  "lines": 3834,
+  "panels": 18,
+  "achievements": 65
+}
